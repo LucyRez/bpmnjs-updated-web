@@ -45,16 +45,16 @@ export default class extends Component {
 
     const { xml = xmlStr } = this.props;
 
+    var script = document.createElement("script");
+    script.onload = this.handleClientLoad;
+    script.src = "https://apis.google.com/js/api.js";
+    document.body.appendChild(script);
+
     if (saved == null) {
       this.renderDiagram(xml);
     } else {
       this.renderDiagram(saved);
     }
-
-    var script = document.createElement("script");
-    script.onload = this.handleClientLoad;
-    script.src = "https://apis.google.com/js/api.js";
-    document.body.appendChild(script);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -244,10 +244,6 @@ export default class extends Component {
       .then(() => {
         this.setState({
           googleAuth: window.gapi.auth2.getAuthInstance(),
-          tokenClient: window.gapi.auth2
-            .getAuthInstance()
-            .currentUser.get()
-            .getAuthResponse(true).access_token,
         });
         this.state.googleAuth.isSignedIn.listen(this.updateSigninStatus);
         // Listen for sign-in state changes.
