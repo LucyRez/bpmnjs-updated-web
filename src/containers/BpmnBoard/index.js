@@ -264,6 +264,14 @@ export default class extends Component {
 
   setSigninStatus = async () => {
     var user = this.state.googleAuth.currentUser.get();
+
+    this.setState({
+      tokenClient: window.gapi.auth2
+        .getAuthInstance()
+        .currentUser.get()
+        .getAuthResponse(true).access_token,
+    });
+
     console.log(user);
     if (user.wt == null) {
       this.setState({
@@ -273,12 +281,7 @@ export default class extends Component {
       var isAuthorized = user.hasGrantedScopes(SCOPES);
       if (isAuthorized) {
         //this.saveXMLToGD();
-        this.setState({
-          tokenClient: window.gapi.auth2
-            .getAuthInstance()
-            .currentUser.get()
-            .getAuthResponse(true).access_token,
-        });
+
         console.log("is authorized");
       }
     }
