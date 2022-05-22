@@ -222,6 +222,7 @@ export default class extends Component {
           })
           .then((res) => {
             let data = res.body;
+            console.log(data);
             this.bpmnModeler.importXML(data);
           });
       });

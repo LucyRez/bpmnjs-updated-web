@@ -1,6 +1,6 @@
 {
   "name": "bpmn-app",
-  "homepage": "https://lucyrez.github.io/bpmnjs-updated.github.io",
+  "homepage": "https://lucyrez.github.io/bpmnjs-updated-web/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
