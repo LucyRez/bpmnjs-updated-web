@@ -277,6 +277,12 @@ export default class extends Component {
       var isAuthorized = user.hasGrantedScopes(SCOPES);
       if (isAuthorized) {
         //this.saveXMLToGD();
+        this.setState({
+          tokenClient: window.gapi.auth2
+            .getAuthInstance()
+            .currentUser.get()
+            .getAuthResponse(true).access_token,
+        });
         console.log("is authorized");
       }
     }
